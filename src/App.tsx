@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   addTodo,
   deleteTodo,
@@ -8,6 +8,7 @@ import {
 import type { Task } from "./types/index";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
+import "./App.css";
 
 function App() {
   const [todos, setTodos] = useState<Task[]>([]);
@@ -35,8 +36,8 @@ function App() {
 
   return (
     <>
-    <Navbar />
-      <div style={{ maxWidth: 600, margin: "0 auto" }}>
+    <Navbar/>
+      <div className="container">
         <h1>Todo App</h1>
         <input
           type="text"
