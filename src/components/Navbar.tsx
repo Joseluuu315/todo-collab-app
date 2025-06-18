@@ -1,15 +1,14 @@
 import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MyNavbar: React.FC = () => {
   return (
-    <Navbar bg="dark" variant="dark">
+    <Navbar bg="dark" variant="dark" className="bg-dark">
       <Container>
-        <Navbar.Brand href="#">To-Do Colaborativa</Navbar.Brand>
-        {/* Login */}
-        <Navbar.Brand href="#">Login</Navbar.Brand>
-        {/* Register */}
-        <Navbar.Brand href="#">Register</Navbar.Brand>
+        <Navbar.Brand href="#" className="text-black">To-Do Colaborativa</Navbar.Brand>
+        <Navbar.Brand href="#" className="text-black">Login</Navbar.Brand>
+        <Navbar.Brand href="#" className="text-black">Register</Navbar.Brand>
       </Container>
     </Navbar>
   );
