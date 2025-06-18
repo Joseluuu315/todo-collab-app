@@ -56,7 +56,11 @@ function App() {
                 }}
                 onClick={() => handleToggle(todo.id, todo.completed)}
               >
-                {todo.title}
+                <strong>{todo.title}</strong> <br />
+                <small>
+                  Created by: {todo.ownerId} <br />
+                  Date: {todo.createdAt.toLocaleString()}
+                </small>
               </span>
               <button onClick={() => handleDelete(todo.id)}>❌</button>
             </li>
