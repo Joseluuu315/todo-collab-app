@@ -4,11 +4,13 @@ import type { Task } from "../types/index";
 
 export const addTodo = async (text: string) => {
   await addDoc(collection(db, "todos"), {
-    text,
+    title: text,
     completed: false,
     createdAt: new Date(),
+    ownerId: "Jose Luis",
   });
 };
+
 
 export const deleteTodo = async (id: string) => {
   await deleteDoc(doc(db, "todos", id));
