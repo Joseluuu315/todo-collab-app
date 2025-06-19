@@ -11,6 +11,7 @@ import Navbar from "./components/Navbar";
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 
 function Home({
   todos,
@@ -109,6 +110,7 @@ function App() {
           }
         />
         <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
       </Routes>
 
       <Footer />
