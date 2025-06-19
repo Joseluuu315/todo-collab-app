@@ -5,6 +5,7 @@ export interface Task {
   completed: boolean;
   createdAt: Date;
   ownerId: string;
+  ownerName: string;
   sharedWith?: string[];
 }
 

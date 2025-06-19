@@ -13,6 +13,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 
+import { auth } from "./config/firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
+
 function Home({
   todos,
   newTodo,
@@ -56,6 +59,7 @@ function Home({
                 👤 <strong>{todo.ownerId}</strong>
               </p>
               <p>📅 {todo.createdAt.toLocaleString()}</p>
+              <p>👤 {todo.ownerName}</p>
             </div>
             <button className="delete-btn" onClick={() => handleDelete(todo.id)}>
               ❌
@@ -71,10 +75,16 @@ function App() {
   const [todos, setTodos] = useState<Task[]>([]);
   const [newTodo, setNewTodo] = useState("");
 
+  const [user, loadingUser] = useAuthState(auth);
+
   useEffect(() => {
-    const unsubscribe = subscribeToTodos(setTodos);
-    return unsubscribe;
-  }, []);
+    if (loadingUser) return;
+    if (!user) return;
+
+    const unsubscribe = subscribeToTodos(user.uid, setTodos);
+
+    return () => unsubscribe();
+  }, [user, loadingUser]);
 
   const handleAdd = async () => {
     if (newTodo.trim()) {
