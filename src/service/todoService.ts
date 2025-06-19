@@ -1,13 +1,35 @@
 import { collection, addDoc, deleteDoc, doc, updateDoc, onSnapshot, query, orderBy } from "firebase/firestore";
-import { db } from "../config/firebase";
+import { auth, db } from "../config/firebase";
 import type { Task } from "../types/index";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+
+export const createUser = async (username: string, email: string, password: string) => {
+  // 1️⃣ Crear usuario en Auth
+  const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+  // 2️⃣ Actualizar perfil con displayName
+  if (auth.currentUser) {
+    await updateProfile(auth.currentUser, {
+      displayName: username,
+    });
+  }
+};
+
+
+export const getUserName = async () => {
+  const user = auth.currentUser;
+  if (!user) {
+    throw new Error("User is not logged in");
+  }
+  return user.displayName;
+}
 
 export const addTodo = async (text: string) => {
   await addDoc(collection(db, "todos"), {
     title: text,
     completed: false,
     createdAt: new Date(),
-    ownerId: "Jose Luis",
+    ownerId: await getUserName(), 
   });
 };
 
