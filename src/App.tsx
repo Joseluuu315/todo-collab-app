@@ -58,9 +58,6 @@ function Home({
               <p>
                 👤 <strong> {todo.ownerName} </strong>
               </p>
-              <p>
-                👤 <strong>{todo.ownerId}</strong>
-              </p>
               <p>📅 {todo.createdAt.toLocaleString()}</p>
             </div>
             <button className="delete-btn" onClick={() => handleDelete(todo.id)}>
