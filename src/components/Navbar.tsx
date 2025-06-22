@@ -37,7 +37,9 @@ const MyNavbar: React.FC = () => {
                 <Modal.Title>Account</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                <p>Username: {user.displayName || user.email}</p>
+                <p><strong>Username:</strong> {user.displayName || user.email}</p>
+                <p><strong>Gmail:</strong> {user.email}</p>
+                <p><strong>Date:</strong> {user.metadata.creationTime}</p>
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="dark" onClick={handleClose}>Close</Button>
