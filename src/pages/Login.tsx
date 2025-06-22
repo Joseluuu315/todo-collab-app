@@ -18,7 +18,7 @@ const Login: React.FC = () => {
     return (
     <Container className="d-flex justify-content-center align-items-center" style={{ minHeight: "80vh" }}>
       <Card style={{ width: "400px", padding: "2rem", boxShadow: "0 4px 20px rgba(0,0,0,0.2)", borderRadius: "1rem" }}>
-        <h2 className="text-center mb-4">Login</h2>
+        <h2 className="text-center mb-4">Login </h2>
         <Form onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
