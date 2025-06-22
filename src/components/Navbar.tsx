@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar, Container, Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useAuthState } from 'react-firebase-hooks/auth';
@@ -8,6 +8,7 @@ import { auth } from '../config/firebase';
 const MyNavbar: React.FC = () => {
   const [show, setShow] = useState(false);
   const [user, loading] = useAuthState(auth);
+  const [photoURL, setPhotoURL] = useState('');
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,15 +18,23 @@ const MyNavbar: React.FC = () => {
     setShow(false);
   };
 
+  useEffect(() => {
+    if (user?.photoURL) {
+      setPhotoURL(user.photoURL);
+    } else {
+      setPhotoURL('./src/assets/react.svg');
+    }
+  }, [user]);
+
   return (
     <Navbar bg="dark" variant="dark">
       <Container>
-        <Navbar.Brand href="/" className='text-black'>To-Do Colaborativa</Navbar.Brand>
+        <Navbar.Brand href="/">To-Do Colaborativa</Navbar.Brand>
 
         {!user && !loading && (
           <>
-            <Navbar.Brand href="/login" className="text-black">Login</Navbar.Brand>
-            <Navbar.Brand href="/register" className="text-black">Register</Navbar.Brand>
+            <Navbar.Brand href="/login">Login</Navbar.Brand>
+            <Navbar.Brand href="/register">Register</Navbar.Brand>
           </>
         )}
 
@@ -40,6 +49,7 @@ const MyNavbar: React.FC = () => {
                 <p><strong>Username:</strong> {user.displayName || user.email}</p>
                 <p><strong>Gmail:</strong> {user.email}</p>
                 <p><strong>Date:</strong> {user.metadata.creationTime}</p>
+                <img src={photoURL} alt="Profile" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="dark" onClick={handleClose}>Close</Button>
