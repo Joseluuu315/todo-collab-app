@@ -49,7 +49,7 @@ const MyNavbar: React.FC = () => {
                 <p><strong>Username:</strong> {user.displayName || user.email}</p>
                 <p><strong>Gmail:</strong> {user.email}</p>
                 <p><strong>Date:</strong> {user.metadata.creationTime}</p>
-                <img src={photoURL} alt="Profile" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />
+                <img src={photoURL} alt="Profile" style={{ width: '100px', height: '100px', objectFit: 'cover' }} />                                
               </Modal.Body>
               <Modal.Footer>
                 <Button variant="dark" onClick={handleClose}>Close</Button>

@@ -13,6 +13,7 @@ const Login: React.FC = () => {
             await signInWithEmailAndPassword(auth, email, password);
         } catch (err: any) {
             setError(err.message || "Error logging in");
+            console.log("Error")
         }
     };
     return (
